@@ -1,5 +1,5 @@
-import requests
-from flask import Flask, render_template, request
+from flask import Flask, request
+import pymongo
 from pymongo import MongoClient
 import settings
 
@@ -24,23 +24,25 @@ def test():
 @app.route('/get_tab')
 def get_tab():
     # here we want to get the value of user (i.e. ?user=some-value)
-    secret = request.args.get('secret')
-    print secret  
-    if (secret == 'heyboi'):
-
-        print 'were in'
+    tabroom = request.args.get('tabroom')
+    print tabroom  
+    if (tabroom):
 
         client = MongoClient('mongodb://' + settings.mongouser + ':' + settings.mongopass + '@' + settings.mongourl)
         db = client['manila_db']
-        collection_on_compose = db['urls']
+        collection_on_compose = db['tabs']
 
-        one_url = collection_on_compose.find()
-
-        print one_url['url']
-        return one_url['url']
+        try:
+            one_tab = collection_on_compose.find({"tabroom": tabroom}).sort('date',pymongo.DESCENDING).limit(1)[0]
+            if(one_tab['url']):
+                print one_tab['url']
+                return one_tab['url']
+        except Exception:
+            print "error: no url"
+            return "error: no url"
 
     else:
-        return "butts"
+        return "error: no tabroom"
 
 
 
