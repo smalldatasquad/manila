@@ -9,22 +9,13 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello():
-    return 'Hello, World'
-
-
-
-@app.route('/test')
-def test():
-    # here we want to get the value of user (i.e. ?user=some-value)
-    url = request.args.get('url')
-    print url
-    return 'butts'
+def index():
+    return 'Hi! use either /get_tab or /set_tab'
 
 
 @app.route('/get_tab')
 def get_tab():
-    # here we want to get the value of user (i.e. ?user=some-value)
+    # get the most recent tab, given tabroom
     tabroom = request.args.get('tabroom')
     print tabroom  
     if (tabroom):
@@ -34,7 +25,8 @@ def get_tab():
         collection_on_compose = db['tabs']
 
         try:
-            one_tab = collection_on_compose.find({"tabroom": tabroom}).sort('date',pymongo.DESCENDING).limit(1)[0]
+            # sort in descending order by date/time, so that  we get the most recent
+            one_tab = collection_on_compose.find({"tabroom": tabroom}).sort('datetime',pymongo.DESCENDING).limit(1)[0]
             if(one_tab['url']):
                 print one_tab['url']
                 return one_tab['url']
@@ -48,7 +40,7 @@ def get_tab():
 
 @app.route('/set_tab')
 def set_tab():
-    # here we want to get the value of user (i.e. ?user=some-value)
+    # set a tab, given tabroom and url
     tabroom = request.args.get('tabroom')
     url = request.args.get('url')
     if (tabroom and url):
@@ -57,7 +49,7 @@ def set_tab():
         db = client['manila_db']
         collection_on_compose = db['tabs']
 
-        tab = {'tabroom': tabroom, 'url': url, 'date': datetime.datetime.utcnow()}
+        tab = {'tabroom': tabroom, 'url': url, 'datetime': datetime.datetime.utcnow()}
 
         try:
             result = collection_on_compose.insert_one(tab)
@@ -70,9 +62,6 @@ def set_tab():
 
     else:
         return "error: no tabroom or url"
-
-
-
 
 
 
