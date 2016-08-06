@@ -2,6 +2,7 @@ from flask import Flask, request
 import pymongo
 from pymongo import MongoClient
 import settings
+import datetime
 
 
 app = Flask(__name__)
@@ -43,6 +44,32 @@ def get_tab():
 
     else:
         return "error: no tabroom"
+
+
+@app.route('/set_tab')
+def set_tab():
+    # here we want to get the value of user (i.e. ?user=some-value)
+    tabroom = request.args.get('tabroom')
+    url = request.args.get('url')
+    if (tabroom and url):
+
+        client = MongoClient('mongodb://' + settings.mongouser + ':' + settings.mongopass + '@' + settings.mongourl)
+        db = client['manila_db']
+        collection_on_compose = db['tabs']
+
+        tab = {'tabroom': tabroom, 'url': url, 'date': datetime.datetime.utcnow()}
+
+        try:
+            result = collection_on_compose.insert_one(tab)
+
+            print "Inserted: ", result.inserted_id, " >> ", tabroom, " : ", url
+            return "Inserted: " + str(result.inserted_id)
+        except Exception:
+            print "error: not inserted", tab
+            return "error: not inserted", tab
+
+    else:
+        return "error: no tabroom or url"
 
 
 
