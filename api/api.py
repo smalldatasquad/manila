@@ -28,11 +28,13 @@ def get_tab():
     print secret  
     if (secret == 'heyboi'):
 
+        print 'were in'
+
         client = MongoClient('mongodb://' + settings.mongouser + ':' + settings.mongopass + '@' + settings.mongourl)
         db = client['manila_db']
         collection_on_compose = db['urls']
 
-        one_url = collection_on_compose.find_one()
+        one_url = collection_on_compose.find()
 
         print one_url['url']
         return one_url['url']
