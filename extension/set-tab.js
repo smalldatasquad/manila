@@ -21,7 +21,7 @@ chrome.runtime.onMessage.addListener(
 
    //$('*').css('background-image', 'url(' + 'http://i.giphy.com/11Oz538wQaXWbC.gif' + ')');
 
-    $('*').css('background-image', 'url(' + 'https://s20.postimg.org/smrskw00d/heyyy.jpg' + ')');
+    // $('*').css('background-image', 'url(' + 'https://s20.postimg.org/smrskw00d/heyyy.jpg' + ')');
 
   }
 );
