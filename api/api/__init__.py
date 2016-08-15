@@ -1,5 +1,4 @@
 from flask import Flask, request
-from flaskrun import flaskrun
 import pymongo
 from pymongo import MongoClient
 import settings
