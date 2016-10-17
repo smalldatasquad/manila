@@ -8,9 +8,6 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
   var message = {"clicked": true };
 
-
-
-
   // Send a message to the active tab
   chrome.tabs.sendMessage(tabId, message);
 });

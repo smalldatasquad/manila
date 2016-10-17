@@ -15,7 +15,7 @@ setTab = function(){
     }
 });
 
-    
+
 
 
 }
@@ -27,17 +27,17 @@ chrome.runtime.onMessage.addListener(
 
   	console.log('Button clicked!: ', message);
   	setTab();
-    
+
     console.log('________________________________________________');
     console.log('________________________________________________');
-    console.log('THIS IS WILL BE SENT TO THE DATABASE!: ',currentUrl); 
+    console.log('THIS IS WILL BE SENT TO THE DATABASE!: ',currentUrl);
 
 
 
 //window.open(currentUrl);
 
 
-   $('*').css({'color': 'blue'});
+   // $('*').css({'color': 'blue'});
 
 
 
@@ -47,5 +47,3 @@ chrome.runtime.onMessage.addListener(
 
   }
 );
-
-

@@ -2,6 +2,7 @@
   "name": "Manila",
   "manifest_version": 2,
   "version": "0.2",
+  "offline_enabled": true,
   "content_scripts": [{
     "matches": [ "<all_urls>" ],
     "js": [ "jquery.js","set-tab.js" ]
@@ -9,15 +10,22 @@
   "browser_action": {
     "default_icon": "icon.png"
   },
+  "permissions": [
+  "activeTab"
+  ],
+
+  "icons": { "16": "icon_19.png",
+         "48": "icon_48.png",
+        "128": "icon_128.png"
+  },
 
   "chrome_url_overrides": {
       "newtab": "main.html"
   },
 
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["background.js", "background-marker.js"]
+
   }
 
 }
-
-
