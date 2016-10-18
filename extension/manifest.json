@@ -5,10 +5,11 @@
   "offline_enabled": true,
   "content_scripts": [{
     "matches": [ "<all_urls>" ],
-    "js": [ "jquery.js","set-tab.js", "canvas2svg.js" ]
+    "js": [ "jquery.js" ]
   }],
   "browser_action": {
-    "default_icon": "icon.png"
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
   },
   "permissions": [
   "activeTab"
@@ -24,7 +25,7 @@
   },
 
   "background": {
-    "scripts": ["background.js", "background-marker.js"]
+    "scripts": ["background.js" ]
 
   }
 
