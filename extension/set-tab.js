@@ -26,7 +26,7 @@ setTab = function() {
             var canvasdata = canvas.toDataURL("image/png");
             canvasdata = canvasdata.replace('data:image/png;base64,', '');
             canvas = document.getElementById('manilacanvas');
-            var url = "http://vps.provolot.com/manila_api/set_scribbled_tab";
+            var url = location.protocol + "//vps.provolot.com/manila_api/set_scribbled_tab";
             var g = $.ajax({
                 type: 'POST',
                 url: url,
