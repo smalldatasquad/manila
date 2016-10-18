@@ -24,7 +24,7 @@ rescrollCanvas = window.onscroll = function() {
 
 function init() {
 
-	$('<canvas id="manilacanvas" style="position:absolute;top:0; left: 0; border:2px solid;"></canvas>').appendTo($("body"));
+	$('<canvas id="manilacanvas" style="position:absolute;top:0; left: 0;"></canvas>').appendTo($("body"));
 
 	canvas = document.getElementById('manilacanvas');
 	resizeCanvas();
@@ -48,8 +48,8 @@ function init() {
 }
 
 
-function color(obj) {
-	switch (obj.id) {
+function color(col) {
+	switch (col) {
 		case "green":
 			thisStrokeStyle = "green";
 			break;
@@ -71,6 +71,8 @@ function color(obj) {
 		case "white":
 			thisStrokeStyle = "white";
 			break;
+		default:
+			thisStrokeStyle = col;
 	}
 	if (thisStrokeStyle == "white") thisLineWidth = 14;
 	else thisLineWidth = 2;

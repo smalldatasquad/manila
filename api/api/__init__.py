@@ -8,12 +8,6 @@ import settings
 import datetime
 
 app = Flask(__name__)
-app.config['FLASKS3_BUCKET_NAME'] = 'stoloniferous-manila'
-s3 = FlaskS3(app)
-"""
-AKIAJ6O2S34J7KBANHEA
-Secret Access Key:
-    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"""
 
 
 @app.route('/')
