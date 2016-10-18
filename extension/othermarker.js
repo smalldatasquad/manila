@@ -51,7 +51,6 @@ function executeUpload() {
 	console.log("whooaaa");
 	var canvasdata = canvas.toDataURL("image/png");
     canvasdata = canvasdata.replace('data:image/png;base64,', '');
-	console.log(canvasdata);
 	canvas = document.getElementById('manilacanvas');
 	var url = "http://localhost:5000/upload_image";
 	var g = $.ajax({
@@ -60,10 +59,10 @@ function executeUpload() {
 		data: {
 			imgBase64: canvasdata,
 			timestamp: Math.floor(Date.now() / 1000),
-			filename: "manila-drawing-" + Math.floor(Date.now() / 1000)
+			filename: "manila-drawing-" + Math.floor(Date.now() / 1000) + ".png"
 		}
 	}).done(function(o) {
-	   console.log('saved'); 
+		console.log(o);
 	}); //POSTDATA
 }
 

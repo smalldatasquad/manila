@@ -97,13 +97,16 @@ def upload_image():
         k = Key(bucket)
 
         # Read the contents of the file
-        print request.form['imgBase64']
         file_contents = base64.b64decode(request.form['imgBase64'])
 
         # Use Boto to upload the file to the S3 bucket
-        k.key = request.form['filename']
+        k.key = settings.AWS_BUCKET_FOLDER_NAME + request.form['filename']
         print "Uploading some data to " + bucket_name + " with key: " + k.key
         k.set_contents_from_string(file_contents)
+        url = k.generate_url(expires_in=0, query_auth=False)
+        print "Resulting url: " ,url
+        return url
+
 
 
 if __name__ == "__main__":
