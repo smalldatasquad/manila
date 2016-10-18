@@ -6,7 +6,7 @@ var canvas, ctx, flag = false,
 	dot_flag = false;
 var ctx2;
 
-var thisStrokeStyle = "black",
+var thisStrokeStyle = "green",
 	thisLineWidth = 2;
 
 resizeCanvas = window.onresize = function() {
@@ -129,27 +129,7 @@ function save() {
 	document.getElementById("canvasimg").style.display = "inline";
 }
 
-function toblob(stuff) {
-    var g, type, bi, ab, ua, b, i;
-    g = stuff.split(',');
-    if (g[0].split('png')[1])
-        type = 'png';
-    else if (g[0].split('jpeg')[1])
-        type = 'jpeg';
-    else
-        return false;
-    bi = atob(g[1]);
-    ab = new ArrayBuffer(bi.length);
-    ua = new Uint8Array(ab);
-    for (i = 0; i < bi.length; i++) {
-        ua[i] = bi.charCodeAt(i);
-    }
-    b = new Blob([ua], {
-        type: "image/" + type
-    });
-    return b;
-}
-    
+   
 function findxy(res, e) {
 	var eX = e.clientX;
 	var eY = e.clientY  + document.body.scrollTop;
@@ -187,4 +167,3 @@ function findxy(res, e) {
 $( document ).ready(function() {
 	init();
 });
-
