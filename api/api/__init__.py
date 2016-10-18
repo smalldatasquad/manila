@@ -34,9 +34,12 @@ def get_tab():
             # sort in descending order by date/time, so that  we get the most recent
             one_tab = collection_on_compose.find({"tabroom": tabroom}).sort('datetime',pymongo.DESCENDING).limit(1)[0]
             if(one_tab['url']):
-                print one_tab['url']
-                return jsonify(**one_tab)
-                return one_tab['url']
+                data = {}
+                data['tab'] = one_tab['url']
+                data['scribbleimgurl'] = one_tab['scribbleimgurl']
+                data['datetime'] = one_tab['datetime']
+                return jsonify(**data)
+#                return one_tab['url']
         except Exception, e:
             print "error:"
             return "error:" + str(e)
