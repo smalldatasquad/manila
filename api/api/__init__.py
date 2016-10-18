@@ -37,9 +37,9 @@ def get_tab():
                 print one_tab['url']
                 return flask.jsonify(**one_tab)
                 return one_tab['url']
-        except Exception:
-            print "error: no url"
-            return "error: no url"
+        except Exception, e:
+            print "error:"
+            return "error:" + str(e)
 
     else:
         return "error: no tabroom"
