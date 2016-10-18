@@ -59,7 +59,8 @@ function executeUpload() {
 			imgBase64: canvasdata,
 			timestamp: Math.floor(Date.now() / 1000),
 			filename: "manila-drawing-" + Math.floor(Date.now() / 1000) + ".png",
-			taburl: window.location.href;
+			taburl: window.location.href,
+			tabroom: 'surfclub'
 		}
 	}).done(function(o) {
 		console.log(o);
