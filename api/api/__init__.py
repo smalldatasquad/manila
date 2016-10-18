@@ -69,23 +69,9 @@ def set_tab():
     else:
         return "error: no tabroom or url"
 
-"""
-@app.route('/image_upload', methods=['POST'])
-def image_upload(): 
-    print request.form
-    if request.method == 'POST' and request.files['image']:
-        print "yeahh"
-	file = request.files['image']
-        print file.filename
-        if file: #and allowed_file(file.filename):
-	    n = secure_filename(file.filename)
-            print file
-	    FileStorage(stream=request.files['image']).save(os.path.join(".",'testpic.jpg'))
-	    return redirect(url_for('index', p=n))
-"""
 
-@app.route('/upload_image', methods=['POST'])
-def upload_image():
+@app.route('/set_scribbled_tab', methods=['POST'])
+def set_scribbled_tab():
     if('imgBase64' in request.form):
         # Connect to Amazon S3
         s3 = boto.connect_s3(settings.AWS_ACCESS_KEY, settings.AWS_SECRET_KEY)

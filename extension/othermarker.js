@@ -48,18 +48,18 @@ function init() {
 }
 
 function executeUpload() {
-	console.log("whooaaa");
 	var canvasdata = canvas.toDataURL("image/png");
     canvasdata = canvasdata.replace('data:image/png;base64,', '');
 	canvas = document.getElementById('manilacanvas');
-	var url = "http://localhost:5000/upload_image";
+	var url = "http://localhost:5000/set_scribbled_tab";
 	var g = $.ajax({
 		type: 'POST',
 		url: url, 
 		data: {
 			imgBase64: canvasdata,
 			timestamp: Math.floor(Date.now() / 1000),
-			filename: "manila-drawing-" + Math.floor(Date.now() / 1000) + ".png"
+			filename: "manila-drawing-" + Math.floor(Date.now() / 1000) + ".png",
+			taburl: window.location.href;
 		}
 	}).done(function(o) {
 		console.log(o);
