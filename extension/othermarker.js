@@ -6,8 +6,8 @@ var canvas, ctx, flag = false,
 	dot_flag = false;
 var ctx2;
 
-var thisStrokeStyle = "green",
-	thisLineWidth = 2;
+var thisStrokeStyle = '#c72084',
+	thisLineWidth = 3;
 
 resizeCanvas = window.onresize = function() {
 	canvas = document.getElementById('manilacanvas');
@@ -54,7 +54,7 @@ function executeUpload() {
 	var url = "http://vps.provolot.com/manila_api/set_scribbled_tab";
 	var g = $.ajax({
 		type: 'POST',
-		url: url, 
+		url: url,
 		data: {
 			imgBase64: canvasdata,
 			timestamp: Math.floor(Date.now() / 1000),
@@ -130,7 +130,7 @@ function save() {
 	document.getElementById("canvasimg").style.display = "inline";
 }
 
-   
+
 function findxy(res, e) {
 	var eX = e.clientX;
 	var eY = e.clientY  + document.body.scrollTop;
