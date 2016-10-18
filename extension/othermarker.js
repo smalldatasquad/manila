@@ -47,6 +47,31 @@ function init() {
 	}, false);
 }
 
+function executeUpload() {
+	var canvasdata = canvas.toDataURL("image/png");
+    canvasdata = canvasdata.replace('data:image/png;base64,', '');
+	canvas = document.getElementById('manilacanvas');
+	var url = "http://vps.provolot.com/manila_api/set_scribbled_tab";
+	var g = $.ajax({
+		type: 'POST',
+		url: url, 
+		data: {
+			imgBase64: canvasdata,
+			timestamp: Math.floor(Date.now() / 1000),
+			filename: "manila-drawing-" + Math.floor(Date.now() / 1000) + ".png",
+			taburl: window.location.href,
+			tabroom: 'surfclub'
+		}
+	}).done(function(o) {
+		console.log(o);
+	}); //POSTDATA
+}
+
+window.onkeyup = function(e) {
+	console.log(e.keyCode);
+	var kc = e.keyCode;
+	if(kc == 88) { executeUpload(); }
+}
 
 function color(col) {
 	switch (col) {
@@ -105,6 +130,7 @@ function save() {
 	document.getElementById("canvasimg").style.display = "inline";
 }
 
+   
 function findxy(res, e) {
 	var eX = e.clientX;
 	var eY = e.clientY  + document.body.scrollTop;

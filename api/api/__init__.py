@@ -1,6 +1,9 @@
 from flask import Flask, request
+from flask_cors import CORS, cross_origin
 import boto
+from boto.s3.connection import S3Connection
 from boto.s3.key import Key
+import base64
 
 import pymongo
 from pymongo import MongoClient
@@ -8,6 +11,7 @@ import settings
 import datetime
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/')
@@ -47,51 +51,66 @@ def set_tab():
     url = request.args.get('url')
     if (tabroom and url):
 
-        client = MongoClient('mongodb://' + settings.mongouser + ':' + settings.mongopass + '@' + settings.mongourl)
-        db = client['manila_db']
-        collection_on_compose = db['tabs']
 
-        tab = {'tabroom': tabroom, 'url': url, 'datetime': datetime.datetime.utcnow()}
-
-        try:
-            result = collection_on_compose.insert_one(tab)
-
-            print "Inserted: ", result.inserted_id, " >> ", tabroom, " : ", url
-            return "Inserted: " + str(result.inserted_id)
-        except Exception:
-            print "error: not inserted", tab
-            return "error: not inserted", tab
+        submit_tab_to_db(tabroom, url)
 
     else:
         return "error: no tabroom or url"
 
-@app.route('/image_upload', methods=['POST'])
-def image_upload(): 
-    if request.method == 'POST' and request.files['file']:
-	file = request.files['image']
-	if file and allowed_file(file.filename):
-	    n = secure_filename(file.filename)
-	    FileStorage(stream=request.files['image']).save(os.path.join(".",'testpic.jpg'))
-	    return redirect(url_for('index', p=n))
+
+def submit_tab_to_db(tabroom, url, scribbleimgurl=None):
+    client = MongoClient('mongodb://' + settings.mongouser + ':' + settings.mongopass + '@' + settings.mongourl)
+    db = client['manila_db']
+    collection_on_compose = db['tabs']
+
+    tab = {'tabroom': tabroom, 'url': url, 'datetime': datetime.datetime.utcnow(), 'scribbleimgurl': scribbleimgurl}
+
+    try:
+        result = collection_on_compose.insert_one(tab)
+
+        print "Inserted: ", result.inserted_id, " >> ", tabroom, " : ", url
+        return "Inserted: " + str(result.inserted_id)
+    except Exception:
+        print "error: not inserted", tab
+        return "error: not inserted", tab
 
 
-@app.route('/upload_file')
-def upload_file():
+@app.route('/set_scribbled_tab', methods=['POST'])
+def set_scribbled_tab():
+    if('imgBase64' in request.form):
+
+        tabroom = request.form['tabroom']
+        taburl = request.form['taburl']
+
+        scribbledata = base64.b64decode(request.form['imgBase64'])
+
+        scribbleimgurl = upload_to_s3(scribbledata)
+
+        print scribbleimgurl
+
+        return submit_tab_to_db(tabroom, taburl, scribbleimgurl)
+
+
+
+def upload_to_s3(file_contents):
+
     # Connect to Amazon S3
-    s3 = boto.connect_s3()
+    s3 = boto.connect_s3(settings.AWS_ACCESS_KEY, settings.AWS_SECRET_KEY)
 
     # Get a handle to the S3 bucket
-    bucket_name = 'stoloniferous-manila'
+    bucket_name = settings.AWS_BUCKET_NAME
     bucket = s3.get_bucket(bucket_name)
+
     k = Key(bucket)
 
-    # Read the contents of the file
-    file_contents = data_file.read()
-
     # Use Boto to upload the file to the S3 bucket
-    k.key = data_file.filename
+    k.key = settings.AWS_BUCKET_FOLDER_NAME + request.form['filename']
     print "Uploading some data to " + bucket_name + " with key: " + k.key
     k.set_contents_from_string(file_contents)
+    url = k.generate_url(expires_in=0, query_auth=False)
+
+    return url
+
 
 
 if __name__ == "__main__":
