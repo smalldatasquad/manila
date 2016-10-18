@@ -35,7 +35,7 @@ def get_tab():
             one_tab = collection_on_compose.find({"tabroom": tabroom}).sort('datetime',pymongo.DESCENDING).limit(1)[0]
             if(one_tab['url']):
                 data = {}
-                data['tab'] = one_tab['url']
+                data['url'] = one_tab['url']
                 data['scribbleimgurl'] = one_tab['scribbleimgurl']
                 data['datetime'] = one_tab['datetime']
                 return jsonify(**data)
