@@ -5,7 +5,7 @@ var newTab;
 
 var dummieResponse = "http://poohead.com/"
 
-var responseUrl;
+var responseLink;
 
 //http://vps.provolot.com:5000/get_tab?tabroom=surfclub
 newTab = function() {
@@ -14,7 +14,15 @@ newTab = function() {
 	    success: function(response) {
 	        console.log('SUCCESS');
             ///////////////////////////////
-	        responseUrl = response;
+            console.log(response);
+	        responseLink = response['url'];
+            responseImage = response['scribbleimgurl'];
+            //window.location.href = responseLink;
+
+            $("#iframe").attr("src", responseLink);
+
+            console.log(responseImage);
+            document.getElementById("Img").src = responseImage;
             ///////////////////////////////
 	    },
 	    error: function(xhr) {
@@ -25,10 +33,8 @@ newTab = function() {
 
 
     document.getElementById( "Img" ).onclick = function() {
-        window.location = responseUrl;
+        //$("#Img").remove();
     };
-
-
 };
 
  $( document ).ready(function() {
