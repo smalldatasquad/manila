@@ -35,7 +35,7 @@ def get_tab():
             one_tab = collection_on_compose.find({"tabroom": tabroom}).sort('datetime',pymongo.DESCENDING).limit(1)[0]
             if(one_tab['url']):
                 print one_tab['url']
-                return flask.jsonify(**one_tab)
+                return Flask.jsonify(**one_tab)
                 return one_tab['url']
         except Exception, e:
             print "error:"
