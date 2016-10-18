@@ -12,13 +12,13 @@ javascript: (function() {
     l = k.body;
 
     function E(a) {
-        return k.createElement(a)
+        return document.createElement(a)
     };
 
     function F(a, b) {
         a.appendChild(b)
     };
-    D = l.scrollTop;
+    D = document.body.scrollTop;
     g = 'absolute';
     h = 'px';
     i = '0px';
@@ -33,10 +33,9 @@ javascript: (function() {
         cursor = 'crosshair'
     }
 
+
     ////////////////////////////
-    // imageCanvasData = canv.elt.toDataURL();
-    //
-    // console.log('imageCanvasData = ',imageCanvasData);
+    //imageData = canv.elt.toDataURL();
 
     // var blobBin = atob(imageData.split(',')[1]);
     // var array = [];
@@ -71,7 +70,7 @@ javascript: (function() {
     F(l, r);
     s = r.getContext('2d');
     n = E('div');
-    F(n, k.createTextNode('Use ⬆︎/⬇︎ to change the color. Press ESC to close.'));
+    F(n, document.createTextNode('Use ⬆︎/⬇︎ to change the color. Press ESC to close.'));
     with(n.style) {
         background = '#FFF';
         border = '1px solid #bc42f4';
@@ -91,7 +90,7 @@ javascript: (function() {
         left = '-1000' + h;
         top = D + h
     }
-    k.onfocus = function() {
+    document.onfocus = function() {
         with(m) {
             value = C;
             focus();
@@ -99,7 +98,7 @@ javascript: (function() {
         }
     };
     F(l, m);
-    k.onfocus();
+    document.onfocus();
 
     function G() {
         if (m.value.length < 3) {
@@ -107,12 +106,12 @@ javascript: (function() {
             return
         }
         y = m.value.split(/,/g);
-        j.resizeBy(y.shift() - l.clientWidth, 0);
+        window.resizeBy(y.shift() - l.clientWidth, 0);
         q = parseInt(y.shift());
         p = d[q];
         H();
         I();
-        k.onfocus()
+        document.onfocus()
     }
     m.addEventListener('input', G, false);
 
@@ -127,7 +126,7 @@ javascript: (function() {
             while (t < u) {
                 if (y[t] == -1) {
                     strokeStyle = p;
-                    lineWidth = f;
+                    lineWidth = 3;
                     stroke();
                     beginPath();
                     A = -1;
@@ -155,15 +154,15 @@ javascript: (function() {
         y.shift()
     }
     z = false;
-    t = j.onresize = function() {
+    t = window.onresize = function() {
         r.style.top = D + h;
-        r.width = l.clientWidth;
-        r.height = j.innerHeight;
+        r.width = document.body.clientWidth;
+        r.height = window.innerHeight;
         H()
     };
     t();
     t = j.onscroll = function() {
-        D = l.scrollTop || k.documentElement.scrollTop;
+        D = document.body.scrollTop || document.documentElement.scrollTop;
         n.style.top = D + h;
         r.style.top = D + h;
         m.style.top = D + h;
@@ -212,7 +211,7 @@ javascript: (function() {
                 l.removeChild(r);
                 l.removeChild(n);
                 l.removeChild(m);
-                k.onfocus = j.onresize = j.onscroll = null;
+                document.onfocus = window.onresize = window.onscroll = null;
                 m.removeEventListener('input', G, false);
                 break;
             case 38:
@@ -229,5 +228,6 @@ javascript: (function() {
                 H()
         }
     }
+
 })();
 void(0);
