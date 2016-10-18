@@ -47,6 +47,31 @@ function init() {
 	}, false);
 }
 
+function executeUpload() {
+	console.log("whooaaa");
+	var canvasdata = canvas.toDataURL("image/png");
+    canvasdata = canvasdata.replace('data:image/png;base64,', '');
+	console.log(canvasdata);
+	canvas = document.getElementById('manilacanvas');
+	var url = "http://localhost:5000/upload_image";
+	var g = $.ajax({
+		type: 'POST',
+		url: url, 
+		data: {
+			imgBase64: canvasdata,
+			timestamp: Math.floor(Date.now() / 1000),
+			filename: "manila-drawing-" + Math.floor(Date.now() / 1000)
+		}
+	}).done(function(o) {
+	   console.log('saved'); 
+	}); //POSTDATA
+}
+
+window.onkeyup = function(e) {
+	console.log(e.keyCode);
+	var kc = e.keyCode;
+	if(kc == 88) { executeUpload(); }
+}
 
 function color(col) {
 	switch (col) {
@@ -103,6 +128,27 @@ function save() {
 	var dataURL = canvas.toDataURL();
 	document.getElementById("canvasimg").src = dataURL;
 	document.getElementById("canvasimg").style.display = "inline";
+}
+
+function toblob(stuff) {
+    var g, type, bi, ab, ua, b, i;
+    g = stuff.split(',');
+    if (g[0].split('png')[1])
+        type = 'png';
+    else if (g[0].split('jpeg')[1])
+        type = 'jpeg';
+    else
+        return false;
+    bi = atob(g[1]);
+    ab = new ArrayBuffer(bi.length);
+    ua = new Uint8Array(ab);
+    for (i = 0; i < bi.length; i++) {
+        ua[i] = bi.charCodeAt(i);
+    }
+    b = new Blob([ua], {
+        type: "image/" + type
+    });
+    return b;
 }
     
 function findxy(res, e) {
