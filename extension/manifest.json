@@ -5,7 +5,7 @@
   "offline_enabled": true,
   "content_scripts": [{
     "matches": [ "<all_urls>" ],
-    "js": [ "jquery.js" ]
+    "js": [ "jquery.js" , "html2canvas.min.js" ]
   }],
   "browser_action": {
     "default_icon": "icon.png",
