@@ -6,7 +6,7 @@ var canvas, ctx, flag = false,
 	dot_flag = false;
 var ctx2;
 
-var thisStrokeStyle = "black",
+var thisStrokeStyle = "green",
 	thisLineWidth = 2;
 
 resizeCanvas = window.onresize = function() {
@@ -104,7 +104,7 @@ function save() {
 	document.getElementById("canvasimg").src = dataURL;
 	document.getElementById("canvasimg").style.display = "inline";
 }
-    
+
 function findxy(res, e) {
 	var eX = e.clientX;
 	var eY = e.clientY  + document.body.scrollTop;
@@ -142,4 +142,3 @@ function findxy(res, e) {
 $( document ).ready(function() {
 	init();
 });
-

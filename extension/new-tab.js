@@ -15,26 +15,12 @@ newTab = function() {
 	    error: function(xhr) {
 	        console.log('FAILURE');
 	    }
-	});
+	});    
 };
 
  $( document ).ready(function() {
     newTab();
   });
 
-
-
-
-// newTab = function() {
-//         	$.get('get_tab', { tabroom: 'surfclub' }, function(data) {
-    	
-// 	});
-// };
-
-
-
-
-
-//window.location = newTab;
 
 console.log('new-tab.js --> IS RUNNING');

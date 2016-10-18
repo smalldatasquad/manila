@@ -17,16 +17,23 @@ setTab = function(){
         console.log('FAILURE');
     }
 });
+
+
+
 }
 
 setTab();
 
 
-
-
-
-// imageData = canv.elt.toDataURL();
+// canvas = document.getElementById('manilacanvas');
 //
+//
+//
+// imageData = canvas.toDataURL();
+
+
+
+
 // var blobBin = atob(imageData.split(',')[1]);
 // var array = [];
 // for (var i = 0; i < blobBin.length; i++) {
@@ -35,6 +42,8 @@ setTab();
 // var imageFile = new Blob([new Uint8Array(array)], {
 //   type: 'image/png'
 // });
+//
+// // console.log(imageFile);
 //
 // var formData = new FormData();
 // formData.append('userPhoto', imageFile);
@@ -48,11 +57,14 @@ setTab();
 //   contentType: false,
 //   enctype: 'multipart/form-data',
 //   success: function(data) {
-//    console.log(data);
+//    console.log('HIIIIIIIIIIIIII!!!!!!!!!');
 //    gotNewImage(data, 0);
 //   },
-//   error: startOver
+//   error: console.log('ERROR! ERROR!')
 // });
+
+
+
 
 
 

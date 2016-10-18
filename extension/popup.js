@@ -1,7 +1,7 @@
 
 function paint() {
   chrome.tabs.executeScript({
-    file: 'marker.js'
+    file: 'othermarker.js'
   });
 }
 
