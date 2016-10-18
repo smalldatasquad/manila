@@ -17,11 +17,6 @@ newTab = function() {
             console.log(response);
 	        responseLink = response['url'];
             responseImage = response['scribbleimgurl'];
-            //window.location.href = responseLink;
-
-            $("#iframe").attr("src", responseLink);
-
-            console.log(responseImage);
             document.getElementById("Img").src = responseImage;
             ///////////////////////////////
 	    },
@@ -33,7 +28,7 @@ newTab = function() {
 
 
     document.getElementById( "Img" ).onclick = function() {
-        //$("#Img").remove();
+        window.location = responseLink;
     };
 };
 
