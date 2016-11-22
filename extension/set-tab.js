@@ -2,9 +2,7 @@ console.log('set-tab.js');
 
 var currentUrl = window.location.href;
 
-var setTab;
-
-/*setTab = function(){
+var setLinkTab = function(){
 	$.ajax({
     url: "//vps.provolot.com/manila_api/set_tab?tabroom=surfclub&url="+currentUrl,
     success: function(response) {
@@ -18,9 +16,9 @@ var setTab;
     }
 });
 
-}*/
+}
 
-setTab = function() {
+var setCanvasTab = function() {
     html2canvas(document.body, {
         onrendered: function(canvas) {
             var canvasdata = canvas.toDataURL("image/png");
@@ -44,7 +42,7 @@ setTab = function() {
     });
 }
 
-setTab();
+setLinkTab();
 
 
 // canvas = document.getElementById('manilacanvas');

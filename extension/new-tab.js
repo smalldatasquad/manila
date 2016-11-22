@@ -1,40 +1,38 @@
-var test = "http://blueblueblue.com/"
 
 
-var newTab;
 
-var dummieResponse = "http://poohead.com/"
+var successLoadImg = function(response) {
+    console.log("SUCCESS! We're going to load an image and make it linkable");
+    ///////////////////////////////
+    console.log(response);
+    var responseLink = response['url'];
+    var responseImage = response['scribbleimgurl'];
+    document.getElementById("Img").src = responseImage;
+    ///////////////////////////////
+    document.getElementById( "Img" ).onclick = function() {
+        window.location = responseLink;
+    };
+}
 
-var responseLink;
+var successLoadURL = function(response) {
+    console.log("SUCCESS! We're going to load a url!");
+    window.location = response['url'];
+}
 
-//http://vps.provolot.com:5000/get_tab?tabroom=surfclub
-newTab = function() {
+var newTab = function(successFunction) {
 	$.ajax({
 	    url: "http://vps.provolot.com/manila_api/get_tab?tabroom=surfclub",
-	    success: function(response) {
-	        console.log('SUCCESS');
-            ///////////////////////////////
-            console.log(response);
-	        responseLink = response['url'];
-            responseImage = response['scribbleimgurl'];
-            document.getElementById("Img").src = responseImage;
-            ///////////////////////////////
-	    },
-	    error: function(xhr) {
+	    success: successFunction,
+        error: function(xhr) {
 	        console.log('FAILURE');
 	    }
 	});
 
-
-
-    document.getElementById( "Img" ).onclick = function() {
-        window.location = responseLink;
-    };
 };
 
- $( document ).ready(function() {
-    newTab();
-  });
+$( document ).ready(function() {
+    newTab(successLoadURL);
+});
 
 
 console.log('new-tab.js --> IS RUNNING');

@@ -9,6 +9,7 @@ function setTheTab() {
   chrome.tabs.executeScript({
     file: 'set-tab.js'
   });
+  window.close();
 }
 
 document.getElementById('paintButton').addEventListener('click', paint);
