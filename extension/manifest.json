@@ -8,21 +8,17 @@
     "js": [ "jquery.js" , "html2canvas.min.js" ]
   }],
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "icons/icon.png",
     "default_popup": "popup.html"
   },
   "permissions": [
   "activeTab"
   ],
 
-  "icons": { "16": "icon_19.png",
-         "48": "icon_48.png",
-        "128": "icon_128.png"
-  },
 
-  "icons": { "16": "icon_19.png",
-         "48": "icon_48.png",
-        "128": "icon_128.png" 
+  "icons": { "16": "icons/icon_19.png",
+         "48": "icons/icon_48.png",
+        "128": "icons/icon_128.png" 
   },
 
   "chrome_url_overrides": {
