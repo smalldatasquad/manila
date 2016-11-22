@@ -5,14 +5,17 @@
   "offline_enabled": true,
   "content_scripts": [{
     "matches": [ "<all_urls>" ],
-    "js": [ "jquery.js" , "html2canvas.min.js" ]
+    "js": [ "jquery-3.1.1.min.js" , "html2canvas.min.js", "load-scribble.js" ]
   }],
   "browser_action": {
     "default_icon": "icons/icon.png",
     "default_popup": "popup.html"
   },
   "permissions": [
-  "activeTab"
+     "activeTab",
+     "tabs",
+    "http://*/*",
+      "https://*/*"
   ],
 
 

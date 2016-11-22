@@ -165,6 +165,6 @@ function findxy(res, e) {
 	}
 }
 
-$( document ).ready(function() {
+$(document).ready(function() {
 	init();
 });

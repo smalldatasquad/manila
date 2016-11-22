@@ -16,6 +16,9 @@ var successLoadImg = function(response) {
 
 var successLoadURL = function(response) {
     console.log("SUCCESS! We're going to load a url!");
+/*      chrome.tabs.executeScript(null, { 
+          code: 'alert("yoyo"); window.location.href="http://www.google.com"'
+      });*/
     window.location = response['url'];
 }
 
