@@ -19,7 +19,7 @@ var setLinkTab = function(){
 }
 
 var setCanvasTab = function() {
-    html2canvas(document.body, {
+    html2canvas($("#manilacanvas"), {
         onrendered: function(canvas) {
             var canvasdata = canvas.toDataURL("image/png");
             canvasdata = canvasdata.replace('data:image/png;base64,', '');
@@ -42,7 +42,8 @@ var setCanvasTab = function() {
     });
 }
 
-setLinkTab();
+//setLinkTab();
+setCanvasTab();
 
 
 // canvas = document.getElementById('manilacanvas');

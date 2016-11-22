@@ -24,7 +24,7 @@ var successLoadURL = function(response) {
 
 var newTab = function(successFunction) {
 	$.ajax({
-	    url: "http://vps.provolot.com/manila_api/get_tab?tabroom=surfclub",
+        url: "https://vps.provolot.com/manila_api/get_tab?tabroom=surfclub",
 	    success: successFunction,
         error: function(xhr) {
 	        console.log('FAILURE');
