@@ -54,9 +54,7 @@ def set_tab():
     tabroom = request.args.get('tabroom')
     url = request.args.get('url')
     if (tabroom and url):
-
-
-        submit_tab_to_db(tabroom, url)
+        return submit_tab_to_db(tabroom, url)
 
     else:
         return "error: no tabroom or url"
