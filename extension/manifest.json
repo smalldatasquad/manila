@@ -3,6 +3,7 @@
   "manifest_version": 2,
   "version": "0.2",
   "offline_enabled": true,
+  "options_page": "options.html",
   "content_scripts": [{
     "matches": [ "<all_urls>" ],
     "js": [ "jquery-3.1.1.min.js" , "html2canvas.min.js", "load-scribble.js" ]
@@ -21,7 +22,7 @@
 
   "icons": { "16": "icons/icon_19.png",
          "48": "icons/icon_48.png",
-        "128": "icons/icon_128.png" 
+        "128": "icons/icon_128.png"
   },
 
   "chrome_url_overrides": {
