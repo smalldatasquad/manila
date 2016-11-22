@@ -1,6 +1,6 @@
 
 
-
+// THIS IS OLD. DON'T USE THIS.
 var successLoadImg = function(response) {
     console.log("SUCCESS! We're going to load an image and make it linkable");
     ///////////////////////////////

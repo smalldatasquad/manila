@@ -8,6 +8,8 @@ var setLinkTab = function(){
 	$.ajax({
     url: "//vps.provolot.com/manila_api/set_tab?tabroom=surfclub&url="+currentUrl,
     success: function(response) {
+        $('<img id="manilasuccess" style="position:absolute;top:0; left: 0;z-index: 1000; pointer-events:none;" />').appendTo($("body"));
+        $("#manilasuccess").attr("src", "http://i.imgur.com/9pZ03ex.png").fadeOut(3000, function() { $(this).remove(); });
         console.log('SUCCESS');
         console.log('________________________________________________');
         console.log('________________________________________________');
