@@ -20,6 +20,11 @@
         "128": "icon_128.png"
   },
 
+  "icons": { "16": "icon_19.png",
+         "48": "icon_48.png",
+        "128": "icon_128.png" 
+  },
+
   "chrome_url_overrides": {
       "newtab": "main.html"
   },
