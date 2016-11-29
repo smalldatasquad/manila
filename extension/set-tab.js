@@ -1,6 +1,7 @@
 // TODO: these options across (new-tab.js, set-tab.js, load-new-tab-scribble.js) need to be shared & set in local storage by options.html, etc
 var opts = {};
-opts.TABROOM = "surfclub";
+var manifest = chrome.runtime.getManifest();
+opts.TABROOM = manifest.settings.tabroom;
 opts.glitterimg = "http://i.imgur.com/9pZ03ex.png";
 opts.set_tab_url = "//vps.provolot.com/manila_api/set_tab?tabroom=" + opts.TABROOM + "&url=";
 opts.set_scribbled_tab_url = "//vps.provolot.com/manila_api/set_scribbled_tab";
