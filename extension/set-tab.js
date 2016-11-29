@@ -11,7 +11,7 @@ var currentUrl = window.location.href;
 
 var spreadGlitter = function() {
     $('<img id="manilasuccess" style="position:absolute;top:0; left: 0;z-index: 1000; pointer-events:none;" />').appendTo($("body"));
-    $("#manilasuccess").attr("src", glitterimg).fadeOut(3000, function() { $(this).remove(); });
+    $("#manilasuccess").attr("src", opts.glitterimg).fadeOut(3000, function() { $(this).remove(); });
 }
 
 var setLinkTab = function(){
