@@ -1,5 +1,5 @@
 var opts = {}
-opts.get_tab_url = "//vps.provolot.com/manila_api/get_tab?tabroom=surfclub",
+opts.get_tab_url = "//vps.provolot.com/manila_api/get_tab?tabroom=surfclub";
 
 
 var onSuccessLoadScribbleOnPage = function(response) {
