@@ -1,3 +1,5 @@
+var opts = {};
+opts.get_tab_url =  "https://vps.provolot.com/manila_api/get_tab?tabroom=surfclub";
 
 
 // THIS IS OLD. DON'T USE THIS.
@@ -16,15 +18,12 @@ var successLoadImg = function(response) {
 
 var successLoadURL = function(response) {
     console.log("SUCCESS! We're going to load a url!");
-/*      chrome.tabs.executeScript(null, { 
-          code: 'alert("yoyo"); window.location.href="http://www.google.com"'
-      });*/
     window.location = response['url'];
 }
 
 var newTab = function(successFunction) {
 	$.ajax({
-        url: "https://vps.provolot.com/manila_api/get_tab?tabroom=surfclub",
+        url: opts.get_tab_url,
 	    success: successFunction,
         error: function(xhr) {
 	        console.log('FAILURE');

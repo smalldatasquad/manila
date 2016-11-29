@@ -1,17 +1,22 @@
 jQuery.fn.exists = function(){return jQuery(this).length>0;}
 
+var opts = {};
+opts.glitterimg = "http://i.imgur.com/9pZ03ex.png";
+opts.set_tab_url = "//vps.provolot.com/manila_api/set_tab?tabroom=surfclub&url=";
+opts.set_scribbled_tab_url = "//vps.provolot.com/manila_api/set_scribbled_tab";
+
 console.log('set-tab.js');
 
 var currentUrl = window.location.href;
 
 var spreadGlitter = function() {
     $('<img id="manilasuccess" style="position:absolute;top:0; left: 0;z-index: 1000; pointer-events:none;" />').appendTo($("body"));
-    $("#manilasuccess").attr("src", "http://i.imgur.com/9pZ03ex.png").fadeOut(3000, function() { $(this).remove(); });
+    $("#manilasuccess").attr("src", glitterimg).fadeOut(3000, function() { $(this).remove(); });
 }
 
 var setLinkTab = function(){
 	$.ajax({
-    url: "//vps.provolot.com/manila_api/set_tab?tabroom=surfclub&url="+currentUrl,
+    url: opts.set_tab_url + currentUrl,
     success: function(response) {
         spreadGlitter();
         console.log('SUCCESS');
@@ -32,7 +37,7 @@ var setCanvasTab = function() {
             var canvasdata = canvas.toDataURL("image/png");
             canvasdata = canvasdata.replace('data:image/png;base64,', '');
             canvas = document.getElementById('manilacanvas');
-            var url = location.protocol + "//vps.provolot.com/manila_api/set_scribbled_tab";
+            var url = location.protocol + opts.set_scribbled_tab_url;
             var g = $.ajax({
                 type: 'POST',
                 url: url,
@@ -46,7 +51,7 @@ var setCanvasTab = function() {
             }).done(function(o) {
                 console.log(o);
                 spreadGlitter();
-            }); //POSTDATA
+            }); 
         }
     });
 }
@@ -60,15 +65,3 @@ if($("#manilacanvas").exists()) {
 
 
 
-
-
-
-// chrome.runtime.onMessage.addListener(
-//   function(message) {
-//
-//   	console.log('Button clicked!: ', message);
-//   	setTab();
-//
-//    // $('*').css({'color': 'blue'});
-//   }
-// );
