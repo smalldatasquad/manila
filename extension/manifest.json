@@ -3,10 +3,10 @@
   "manifest_version": 2,
   "version": "0.2",
   "offline_enabled": true,
-  "options_page": "options.html",
+  "UNCOMMENT_ME_LATER_options_page": "options.html",
   "content_scripts": [{
     "matches": [ "<all_urls>" ],
-    "js": [ "jquery.js" , "html2canvas.min.js", "load-scribble.js" ]
+    "js": [ "jquery.js" , "html2canvas.min.js", "load-scribble.js", "sjcl.js" ]
   }],
   "browser_action": {
     "default_icon": "icons/icon.png",
