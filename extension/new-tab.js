@@ -1,5 +1,7 @@
+// TODO: these options across (new-tab.js, set-tab.js, load-new-tab-scribble.js) need to be shared & set in local storage by options.html, etc
 var opts = {};
-opts.get_tab_url =  "https://vps.provolot.com/manila_api/get_tab?tabroom=surfclub";
+opts.TABROOM = "surfclub";
+opts.get_tab_url =  "https://vps.provolot.com/manila_api/get_tab?tabroom=" + opts.TABROOM;
 
 var onSuccessLoadURL = function(response) {
     console.log("SUCCESS! We're going to load a url!");
