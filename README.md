@@ -5,11 +5,11 @@
 
 
 
-## api/ is a simple Flask API made to coordinate with Amazon S3 and a MongoDB instance. 
+**api/** is a simple Flask API made to coordinate with Amazon S3 and a MongoDB instance. 
 - You need an S3 Bucket with proper permissions and a MongoDB instance somewhere (I used a Compose.io server I already have running, but this could probably be written as using Sqlite or tinydb).
 - The server should allow both http/https queries.
 
-## extension/ is the Chrome Extension. Currently under total development.
+**extension/** is the Chrome Extension. Currently under total development.
 
 If you reeeally want to use this: edit manifest.json and change the tabroom in 'settings' to something else. Anyone with the same chrome extension with the same tabroom will change/read the same set of new tabs.
 
